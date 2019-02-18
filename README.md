@@ -1,2 +1,2 @@
-# JianhangYin.github.io
-Personal Website
+# ImageRecognition
+This is an online Imaging Recognition website, have fun!
