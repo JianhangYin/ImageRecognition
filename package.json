@@ -2,7 +2,7 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Jianhangyin.github.io/ImageRecognition",
+  "homepage": "https://JianhangYin.github.io/ImageRecognition",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.8.2",
