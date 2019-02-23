@@ -21,6 +21,7 @@ class App extends React.Component {
     this.state = {
       input: '',
       imageUrl: '',
+      box: {},
     };
   }
 
@@ -28,6 +29,23 @@ class App extends React.Component {
     this.setState({
       input: event.target.value,
     });
+  };
+
+  calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById('inputImage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width * (1 - clarifaiFace.right_col),
+      bottomRow: height * (1 - clarifaiFace.bottom_row),
+    };
+  };
+
+  dispalyFaceBox = (box) => {
+    this.setState({box: box});
   };
 
   onSubmit = () => {
@@ -39,14 +57,8 @@ class App extends React.Component {
         Clarifai.FACE_DETECT_MODEL,
         this.state.input,
       )
-      .then(
-        function(response) {
-        // do something with response
-        },
-        function(err) {
-        // there was an error
-        },
-      );
+      .then(response => this.dispalyFaceBox(this.calculateFaceLocation(response)))
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -64,6 +76,7 @@ class App extends React.Component {
         />
         <ImagePanel
           imageUrl={this.state.imageUrl}
+          box={this.state.box}
         />
       </div>
     );
