@@ -6,7 +6,7 @@ export default (
   <Router>
     <div>
       <Route exact path={'/'} component={faceDetector}/>
-      <Route path={'/:swiperType'} component={faceDetector}/>
+      <Route path={'/faceDetector'} component={faceDetector}/>
     </div>
   </Router>
 );
