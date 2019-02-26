@@ -1,14 +1,14 @@
 import React from 'react';
 import Tilt from 'react-tilt';
-import './Logo.css';
+import styles from './Logo.mudule.css';
 import kiwi from './kiwi.svg';
 
 class Logo extends React.Component {
   render() {
     return (
-      <div className='ma4 mt0'>
-        <Tilt className='Tilt br2 shadow-2' options={{ max : 100 }} style={{ height: 100, width: 100 }} >
-          <div className='Tilt-inner'>
+      <div>
+        <Tilt className={styles.Tilt} options={{ max : 100 }} style={{ height: 100, width: 100 }} >
+          <div>
             <img src={kiwi} alt='kiwi'/>
           </div>
         </Tilt>

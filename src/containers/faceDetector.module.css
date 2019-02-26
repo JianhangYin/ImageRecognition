@@ -9,15 +9,6 @@
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(45deg, blue, red);
 }
-.center {
-    display: flex;
-    justify-content: center;
-}
-
-.right {
-    display: flex;
-    justify-content: flex-end;
-}
 
 .particles {
     position: fixed;

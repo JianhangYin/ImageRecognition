@@ -8,7 +8,7 @@ import Logo from '../components/Logo/Logo';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import ImagePanel from '../components/ImagePanel/ImagePanel';
 
-import './faceDetector.css';
+import styles from './faceDetector.module.css';
 
 const app = new Clarifai.App({
   apiKey: 'e772a7ea78b34f7b896ff4fdcad17d76'
@@ -62,9 +62,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='panel'>
+      <div className={styles.panel}>
         <Particles
-          className='particles'
+          className={styles.particles}
           params={PARTICLES_PARAM}
         />
         <Navigation/>
