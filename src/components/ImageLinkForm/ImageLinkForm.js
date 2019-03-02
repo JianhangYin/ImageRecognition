@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ImageLinkForm.module.css';
 
 class ImageLinkForm extends React.Component {
   render() {
@@ -7,24 +8,24 @@ class ImageLinkForm extends React.Component {
       onSubmit,
     } = this.props;
     return (
-      <nav>
-        <p>
+      <div className={styles.panel}>
+        <div className={styles.title}>
           Face Recognition
-        </p>
-        <div>
-          <div>
-            <input
-              type='text'
-              onChange={onInputChange}
-            />
-            <button
-              onClick={onSubmit}
-            >
-              Detect
-            </button>
-          </div>
         </div>
-      </nav>
+        <div className={styles.input}>
+          <input
+            className={styles.form}
+            type='text'
+            onChange={onInputChange}
+          />
+          <button
+            className={styles.button}
+            onClick={onSubmit}
+          >
+            Detect
+          </button>
+        </div>
+      </div>
     );
   }
 }

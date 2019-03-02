@@ -1,4 +1,43 @@
-.center {
+.panel {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: black;
+}
+
+.input {
+    padding: 20px 10px;
+    width: 35%;
+    min-width: 380px;
     display: flex;
     justify-content: center;
+    box-shadow: 0 0 8px 2px rgba(0,0,0,.2);
+}
+
+.form {
+    width: 60%;
+    border-radius: 5px;
+    font-size: 21px;
+}
+
+.button {
+    width: 20%;
+    margin-left: 5%;
+    border-radius: 5px;
+    font-size: 21px;
+    background-color: mediumpurple;
+    color: white;
+    border: 1px solid mediumpurple;
+    box-shadow: 0 0 8px 2px rgba(0,0,0,.2);
+    transition: all 0.2s;
+}
+.button:hover {
+    transform: scale(1.1, 1.1);
 }

@@ -3,12 +3,11 @@ import Clarifai from 'clarifai';
 import Particles from 'react-particles-js';
 import { PARTICLES_PARAM } from '../common/constant';
 
-import Navigation from '../components/Navigation/Navigation';
 import Logo from '../components/Logo/Logo';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import ImagePanel from '../components/ImagePanel/ImagePanel';
 
-import styles from './faceDetector.module.css';
+import styles from './FaceDetector.module.css';
 
 const app = new Clarifai.App({
   apiKey: 'e772a7ea78b34f7b896ff4fdcad17d76'
@@ -62,21 +61,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.panel}>
+      <div className={styles.background}>
         <Particles
           className={styles.particles}
           params={PARTICLES_PARAM}
         />
-        <Navigation/>
-        <Logo/>
-        <ImageLinkForm
-          onInputChange={this.onInputChange}
-          onSubmit={this.onSubmit}
-        />
-        <ImagePanel
-          imageUrl={this.state.imageUrl}
-          box={this.state.box}
-        />
+        <div className={styles.panel}>
+          <Logo/>
+          <ImageLinkForm
+            onInputChange={this.onInputChange}
+            onSubmit={this.onSubmit}
+          />
+          <ImagePanel
+            imageUrl={this.state.imageUrl}
+            box={this.state.box}
+          />
+        </div>
       </div>
     );
   }
