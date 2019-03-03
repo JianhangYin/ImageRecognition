@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../common/Button';
 import styles from './ImageLinkForm.module.css';
 
 class ImageLinkForm extends React.Component {
@@ -18,12 +19,12 @@ class ImageLinkForm extends React.Component {
             type='text'
             onChange={onInputChange}
           />
-          <button
-            className={styles.button}
-            onClick={onSubmit}
-          >
-            Detect
-          </button>
+          <div className={styles.button}>
+            <Button
+              text='Detect'
+              onSubmit={onSubmit}
+            />
+          </div>
         </div>
       </div>
     );
