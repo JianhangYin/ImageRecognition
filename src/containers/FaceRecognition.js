@@ -18,7 +18,7 @@ class FaceRecognition extends React.Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {},
+      box: [],
     };
   }
 
@@ -29,17 +29,19 @@ class FaceRecognition extends React.Component {
   };
 
   calculateFaceLocation = (data) => {
-    console.log(data);
-    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const resultList = data.outputs[0].data.regions;
     const image = document.getElementById('inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
-    return {
-      leftCol: clarifaiFace.left_col * width,
-      topRow: clarifaiFace.top_row * height,
-      rightCol: width * (1 - clarifaiFace.right_col),
-      bottomRow: height * (1 - clarifaiFace.bottom_row),
-    };
+    return resultList.map(result => {
+      const location = result.region_info.bounding_box;
+      return {
+        leftCol: location.left_col * width,
+        topRow: location.top_row * height,
+        rightCol: width * (1 - location.right_col),
+        bottomRow: height * (1 - location.bottom_row),
+      }
+    });
   };
 
   dispalyFaceBox = (box) => {

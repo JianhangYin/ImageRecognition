@@ -13,16 +13,21 @@ class ImagePanel extends React.Component {
             alt=''
             src={this.props.imageUrl}
           />
-          <div
-            className={styles.box}
-            style={{
-              top: box.topRow,
-              bottom: box.bottomRow,
-              left: box.leftCol,
-              right: box.rightCol,
-            }}
-          >
-          </div>
+          {
+            box.map((tiem, index) => (
+              <div
+                className={styles.box}
+                key={index}
+                style={{
+                  top: tiem.topRow,
+                  bottom: tiem.bottomRow,
+                  left: tiem.leftCol,
+                  right: tiem.rightCol,
+                }}
+              >
+              </div>
+            ))
+          }
         </div>
       </div>
     );
