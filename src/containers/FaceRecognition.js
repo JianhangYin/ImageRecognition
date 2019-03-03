@@ -1,19 +1,18 @@
 import React from 'react';
 import Clarifai from 'clarifai';
-import Particles from 'react-particles-js';
-import { PARTICLES_PARAM } from '../common/constant';
 
 import Logo from '../components/Logo/Logo';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import ImagePanel from '../components/ImagePanel/ImagePanel';
 
-import styles from './FaceDetector.module.css';
+import styles from './FaceRecognition.module.css';
 
 const app = new Clarifai.App({
   apiKey: 'e772a7ea78b34f7b896ff4fdcad17d76'
 });
 
-class App extends React.Component {
+class FaceRecognition extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -61,25 +60,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.background}>
-        <Particles
-          className={styles.particles}
-          params={PARTICLES_PARAM}
+      <div className={styles.panel}>
+        <Logo/>
+        <ImageLinkForm
+          onInputChange={this.onInputChange}
+          onSubmit={this.onSubmit}
         />
-        <div className={styles.panel}>
-          <Logo/>
-          <ImageLinkForm
-            onInputChange={this.onInputChange}
-            onSubmit={this.onSubmit}
-          />
-          <ImagePanel
-            imageUrl={this.state.imageUrl}
-            box={this.state.box}
-          />
-        </div>
+        <ImagePanel
+          imageUrl={this.state.imageUrl}
+          box={this.state.box}
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default FaceRecognition;
