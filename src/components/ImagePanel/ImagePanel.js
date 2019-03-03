@@ -14,7 +14,7 @@ class ImagePanel extends React.Component {
             src={this.props.imageUrl}
           />
           {
-            box.map((tiem, index) => (
+            box.length !== 0 && box.map((tiem, index) => (
               <div
                 className={styles.box}
                 key={index}
