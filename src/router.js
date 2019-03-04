@@ -6,7 +6,6 @@ export default (
   <Router>
     <div>
       <Route exact path={'/'} component={Main}/>
-      <Route path={'/faceDetector'} component={Main}/>
     </div>
   </Router>
 );
