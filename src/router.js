@@ -4,8 +4,6 @@ import Main from './containers/Main';
 
 export default (
   <Router>
-    <div>
-      <Route exact path={'/'} component={Main}/>
-    </div>
+    <Route exact path={'/'} component={Main}/>
   </Router>
 );
