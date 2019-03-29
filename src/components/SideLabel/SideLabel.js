@@ -6,15 +6,19 @@ import styles from './SideLabel.module.css';
 class SideLabel extends React.Component {
 
   render() {
-    const { onSubmit } = this.props;
+    const {
+      onFaceDetectClick,
+      onColorClick,
+    } = this.props;
     return (
       <div className={styles.panel}>
         <Button
           text='Face'
-          onSubmit={onSubmit}
+          onSubmit={onFaceDetectClick}
         />
         <Button
           text='Color'
+          onSubmit={onColorClick}
         />
         <Button
           text='NSFW'

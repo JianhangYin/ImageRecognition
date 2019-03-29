@@ -20,19 +20,30 @@ class FaceRecognition extends React.Component {
     this.state = {
       input: '',
       imageUrl: '',
-      result: {},
+      faceResult: {},
+      colorResult: {},
       box: [],
+      colors: [],
     };
   }
 
-  onSideClick = () => {
-    this.calculateFaceLocation(this.state.result);
+  onFaceDetectClick = () => {
+    this.calculateFaceLocation(this.state.faceResult);
+  };
+
+  onColorClick = () => {
+    this.calculateColorRadio(this.state.colorResult);
   };
 
   onInputChange = (event) => {
     this.setState({
       input: event.target.value,
     });
+  };
+
+  calculateColorRadio = (data) => {
+    const resultList = data.outputs[0].data.colors;
+    this.setState({colors: resultList});
   };
 
   calculateFaceLocation = (data) => {
@@ -54,7 +65,8 @@ class FaceRecognition extends React.Component {
 
   onSubmit = () => {
     this.setState({
-      result: {},
+      faceResult: {},
+      colorResult: {},
       imageUrl: this.state.input,
     });
     try {
@@ -63,19 +75,26 @@ class FaceRecognition extends React.Component {
           Clarifai.FACE_DETECT_MODEL,
           this.state.input,
         )
-        .then(result => this.setState({result}))
+        .then(faceResult => this.setState({faceResult}));
+      app.models
+        .predict(
+          Clarifai.COLOR_MODEL,
+          this.state.input,
+        )
+        .then(colorResult => this.setState({colorResult}));
     } catch(err) {
       console.log(err);
     }
   };
 
   render() {
-    const { result } = this.state;
+    const { faceResult, colorResult } = this.state;
     return (
       <div className={styles.panel}>
         <Logo/>
-        {!_.isEmpty(result) && <SideLabel
-          onSubmit={this.onSideClick}
+        {!_.isEmpty(faceResult && colorResult) && <SideLabel
+          onFaceDetectClick={this.onFaceDetectClick}
+          onColorClick={this.onColorClick}
         />}
         <ImageLinkForm
           onInputChange={this.onInputChange}
