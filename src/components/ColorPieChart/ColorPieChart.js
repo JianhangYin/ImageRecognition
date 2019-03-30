@@ -1,28 +1,45 @@
 import React from 'react';
-import echarts from 'echarts';
+import PieChart from '../common/PieChart';
+import style from './ColorPieChart.module.css';
 
 class ColorPieChart extends React.Component {
-  componentDidMount() {
-    const myChart = echarts.init(document.getElementById('pieChart'));
-    // 绘制图表
-    myChart.setOption({
-      title: { text: 'ECharts 入门示例' },
-      tooltip: {},
-      xAxis: {
-        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-      },
-      yAxis: {},
-      series: [{
-        name: '销量',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }]
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorData: [],
+      colorPie: [],
+    };
   }
-
+  componentDidMount() {
+    this.updateColorInfo();
+  }
+  updateColorInfo = () => {
+    const { colorInfo } = this.props;
+    let colorData = [];
+    let colorPie = [];
+    colorInfo.forEach((colorItem) => {
+      const colorValue = colorItem.value;
+      const colorName = colorItem.raw_hex;
+      colorData.push({value: colorValue, name: colorName});
+      colorPie.push(colorName);
+    });
+    this.setState({
+      colorData,
+      colorPie,
+    });
+  };
   render() {
-    return(
-      <div id="pieChart" style={{ width: 400, height: 400 }}></div>
+    const {
+      colorData,
+      colorPie,
+    } = this.state;
+    return (
+      <div className={style.panel}>
+        <PieChart
+          colorData={colorData}
+          colorPie={colorPie}
+        />
+      </div>
     );
   }
 }

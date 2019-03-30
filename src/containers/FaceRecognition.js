@@ -89,14 +89,21 @@ class FaceRecognition extends React.Component {
   };
 
   render() {
-    const { faceResult, colorResult } = this.state;
+    const {
+      faceResult,
+      colorResult,
+      colors,
+    } = this.state;
     return (
       <div className={styles.panel}>
         <Logo/>
-        {!_.isEmpty(faceResult && colorResult) && <SideLabel
-          onFaceDetectClick={this.onFaceDetectClick}
-          onColorClick={this.onColorClick}
-        />}
+        {
+          !_.isEmpty(faceResult) && !_.isEmpty(colorResult) &&
+          <SideLabel
+            onFaceDetectClick={this.onFaceDetectClick}
+            onColorClick={this.onColorClick}
+          />
+        }
         <ImageLinkForm
           onInputChange={this.onInputChange}
           onSubmit={this.onSubmit}
@@ -105,7 +112,12 @@ class FaceRecognition extends React.Component {
           imageUrl={this.state.imageUrl}
           box={this.state.box}
         />
-        <ColorPieChart/>
+        {
+          colors.length !== 0 &&
+          <ColorPieChart
+            colorInfo={colors}
+          />
+        }
       </div>
     );
   }
