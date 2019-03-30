@@ -6,6 +6,7 @@ import Logo from '../components/Logo/Logo';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import ImagePanel from '../components/ImagePanel/ImagePanel';
 import SideLabel from '../components/SideLabel/SideLabel';
+import ColorPieChart from '../components/ColorPieChart/ColorPieChart';
 
 import styles from './FaceRecognition.module.css';
 
@@ -104,6 +105,7 @@ class FaceRecognition extends React.Component {
           imageUrl={this.state.imageUrl}
           box={this.state.box}
         />
+        <ColorPieChart/>
       </div>
     );
   }
